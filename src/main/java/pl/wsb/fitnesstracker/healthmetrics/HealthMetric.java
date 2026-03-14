@@ -7,13 +7,13 @@ import pl.wsb.fitnesstracker.user.api.User;
 
 import java.time.LocalDate;
 
-public class HealtMetric {
+public class HealthMetric {
     @Entity
     @Table(name = "healt_metric")
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @ToString
-    public class Healt_Metrics {
+    public class Health_Metrics {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class HealtMetric {
         @Column(name = "heart_rate" ,nullable = false)
         private int heart_rate;
 
-        public Healt_Metrics(
+        public Health_Metrics(
                 final User user,
                 final float weight,
                 final float height,
