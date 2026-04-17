@@ -6,11 +6,18 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import pl.wsb.fitnesstracker.healthmetrics.HealthMetric;
+import pl.wsb.fitnesstracker.statistics.api.Statistics;
+import pl.wsb.fitnesstracker.training.api.Training;
+import pl.wsb.fitnesstracker.workoutsession.WorkoutSession;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -21,11 +28,26 @@ public class User {
     @Nullable
     private Long id;
 
-    @Column(name = "birthdate", nullable = false)
-    private LocalDate birthdate;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
 
-    @Column(nullable = false, unique = true)
+    @Column(name="lastName",nullable = false)
+    private String lastName;
+
+    @Column(name="birthday",nullable = false)
+    private LocalDate birthday;
+
+    @Column(name= "email",nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Training> trainings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<HealthMetric> healthMetrics = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private Statistics statistics;
 
     public User(
             final String firstName,
@@ -33,8 +55,10 @@ public class User {
             final LocalDate birthdate,
             final String email) {
 
-        this.birthdate = birthdate;
-        this.email = email;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.birthday = birthdate;
+      this.email = email;
     }
 
 }
