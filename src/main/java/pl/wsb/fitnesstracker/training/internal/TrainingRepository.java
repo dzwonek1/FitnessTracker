@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TrainingRepository extends JpaRepository<Training, Long> {
     @Query(
-            value = "Select SUM(distance) From trainings where user_id = :userId", nativeQuery = true
+            value = "Select SUM(distance) From training where user_id = :userId", nativeQuery = true
     )
     double sumDistanceByUserId(@Param("userId") Long userId);
 

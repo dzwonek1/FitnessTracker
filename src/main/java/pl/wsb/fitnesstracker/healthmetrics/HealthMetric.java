@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "health_metrics")
+@Table(name = "health_metric")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString

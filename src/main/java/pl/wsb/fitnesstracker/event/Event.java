@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "events")
+@Table(name = "event")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "user_events")
+@Table(name = "user_event")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString

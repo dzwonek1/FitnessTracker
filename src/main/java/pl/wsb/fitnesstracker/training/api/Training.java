@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "trainings")
+@Table(name = "training")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
