@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.wsb.fitnesstracker.training.api.Training;
 import pl.wsb.fitnesstracker.training.internal.ActivityType;
+import pl.wsb.fitnesstracker.training.internal.TrainingRepository;
 import pl.wsb.fitnesstracker.user.api.User;
+import pl.wsb.fitnesstracker.userevent.UserEventRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +37,10 @@ class InitialDataLoader {
     private final JpaRepository<User, Long> userRepository;
 
     private final JpaRepository<Training, Long> trainingRepository;
+
+    private final UserEventRepository userEventRepository;
+
+    private final TrainingRepository trainingRepository1;
 
     @EventListener
     @Transactional
@@ -155,6 +161,11 @@ class InitialDataLoader {
             trainingData.add(training10);
 
             trainingRepository.saveAll(trainingData);
+            Long testUserEventId = 1L;
+            System.out.println("Liczba uczestników eventu " + testUserEventId + ": " +userEventRepository.countParticipants(testUserEventId));
+            Long testTrainingId = 1L;
+            System.out.println("Liczba przepiegniętych kilometrów " + testTrainingId + ": " +trainingRepository1.sumDistanceByUserId(testTrainingId));
+            System.out.println("Aktywność "+trainingRepository1.findByActivityType(ActivityType.RUNNING));
         } catch (ParseException e) {
             e.printStackTrace();
         }

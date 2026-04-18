@@ -6,16 +6,17 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.wsb.fitnesstracker.training.internal.ActivityType;
-import pl.wsb.fitnesstracker.user.api.User;
-import pl.wsb.fitnesstracker.workoutsession.WorkoutSession;
+
+import pl.wsb.fitnesstracker.userevent.UserEvent;
+
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-// TODO: Define the Event entity with appropriate fields and annotations
+
 @Entity
-@Table(name = "Event")
+@Table(name = "events")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -32,10 +33,10 @@ public class Event {
     @Column(name = "description", nullable = true)
     private String description;
 
-    @Column(name = "startTime" ,nullable = false)
+    @Column(name = "start_time" ,nullable = false)
     private LocalDateTime startTime;
 
-    @Column(name = "endTime" ,nullable = false)
+    @Column(name = "end_time" ,nullable = false)
     private LocalDateTime endTime;
 
     @Column(name = "country" ,nullable = true)
@@ -44,6 +45,8 @@ public class Event {
     @Column(name = "city" ,nullable = true)
     private String city;
 
+    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
+    private List<UserEvent> userEvents = new ArrayList<>();
     public Event(
             final String name,
             final LocalDateTime startTime,
@@ -69,7 +72,7 @@ public class Event {
         this.country = country;
         this.city = city;
     }
-    }
+}
 
 
 

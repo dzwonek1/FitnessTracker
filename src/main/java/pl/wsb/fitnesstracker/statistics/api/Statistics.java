@@ -6,14 +6,11 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.wsb.fitnesstracker.training.internal.ActivityType;
 import pl.wsb.fitnesstracker.user.api.User;
-import pl.wsb.fitnesstracker.workoutsession.WorkoutSession;
 
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Statistics")
+@Table(name = "statistics")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
@@ -28,13 +25,13 @@ public class Statistics {
     @JoinColumn(name = "user_id",referencedColumnName = "id",nullable = false)
     private User user;
 
-    @Column(name = "totalTrainings", nullable = false)
+    @Column(name = "total_trainings", nullable = false)
     private int totalTrainings;
 
-    @Column(name = "totalDistance", nullable = false)
+    @Column(name = "total_distance", nullable = false)
     private double totalDistance;
 
-    @Column(name = "totalCaloriesBurned",nullable = false )
+    @Column(name = "total_calories_burned",nullable = false )
     private int totalCaloriesBurned;
 
     public Statistics(
@@ -51,5 +48,4 @@ public class Statistics {
     }
 
 }
-
 
