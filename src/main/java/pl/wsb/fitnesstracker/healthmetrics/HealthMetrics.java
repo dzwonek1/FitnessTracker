@@ -9,11 +9,11 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "health_metric")
+@Table(name = "health_metrics")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public class HealthMetric {
+public class HealthMetrics {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class HealthMetric {
     @Column(name = "heart_rate" ,nullable = true)
     private int heartRate;
 
-    public HealthMetric(
+    public HealthMetrics(
             final User user,
             final LocalDate date) {
 
@@ -43,7 +43,7 @@ public class HealthMetric {
         this.date = date;
     }
 
-    public HealthMetric(
+    public HealthMetrics(
             final User user,
             final double weight,
             final float height,

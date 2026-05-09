@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.wsb.fitnesstracker.healthmetrics.HealthMetric;
+import pl.wsb.fitnesstracker.healthmetrics.HealthMetrics;
 import pl.wsb.fitnesstracker.statistics.api.Statistics;
 import pl.wsb.fitnesstracker.training.api.Training;
 import pl.wsb.fitnesstracker.userevent.UserEvent;
@@ -42,7 +42,7 @@ public class User {
     private List<Training> trainings = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    private List<HealthMetric> healthMetrics = new ArrayList<>();
+    private List<HealthMetrics> healthMetrics = new ArrayList<>();
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private Statistics statistics;
