@@ -41,5 +41,6 @@ public class Achievement {
         this.name = name;
         this.earnedAt = earnedAt;
         this.user = user;
+
     }
 }
