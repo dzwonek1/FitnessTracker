@@ -33,7 +33,7 @@ public class User {
     private String lastName;
 
     @Column(name="birthday",nullable = false)
-    private LocalDate birthday;
+    private LocalDate birthdate;
 
     @Column(name= "email",nullable = false, unique = true)
     private String email;
@@ -53,14 +53,21 @@ public class User {
     public User(
             final String firstName,
             final String lastName,
-            final LocalDate birthday,
+            final LocalDate birthdate,
             final String email) {
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthday = birthday;
+        this.birthdate = birthdate;
+        this.email = email;
+    }
+    public  void updateUser(String firstName, String lastName, LocalDate birthdate,String email){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
         this.email = email;
     }
 
 }
+
 

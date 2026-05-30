@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.wsb.fitnesstracker.user.api.User;
+import pl.wsb.fitnesstracker.user.api.UserNotFoundException;
 import pl.wsb.fitnesstracker.user.api.UserProvider;
 import pl.wsb.fitnesstracker.user.api.UserService;
 
@@ -24,6 +25,30 @@ class UserServiceImpl implements UserService, UserProvider {
             throw new IllegalArgumentException("User has already DB ID, update is not permitted!");
         }
         return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        log.info("Deleting User {}",userId);
+        userRepository.findById(userId).ifPresent(userRepository::delete);
+    }
+
+    @Override
+    public User updateUser(Long userId, User user) {
+        log.info("Updating User {}", userId);
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        if (optionalUser.isEmpty()) {
+            throw new UserNotFoundException(userId);
+        }
+        User existingUser = optionalUser.get();
+
+        existingUser.updateUser(user.getFirstName(),
+                user.getLastName(),
+                user.getBirthdate(),
+                user.getEmail()
+        );
+        return userRepository.save(existingUser);
     }
 
     @Override
